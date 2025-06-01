@@ -1,0 +1,4 @@
+Posiciones de barcos del servidor: C3,C2,E1,D2,D1
+Disparo en E1: HIT
+Disparo en D2: HIT
+Jugador salió de la partida antes de terminar.
