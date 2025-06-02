@@ -11,6 +11,9 @@ PORT = 65432
 TILE_SIZE = 80
 GRID_SIZE = 5
 SCREEN_SIZE = TILE_SIZE * GRID_SIZE
+impactos_recibidos = {}  # coord -> código de resultado
+ultimo_disparo = ""      # texto a mostrar debajo
+
 
 def esperar_cliente(barcos):
     pygame.init()
@@ -30,7 +33,20 @@ def esperar_cliente(barcos):
             for col in range(GRID_SIZE):
                 coord = f"{chr(65 + fila)}{col + 1}"
                 rect = pygame.Rect(col * TILE_SIZE, fila * TILE_SIZE, TILE_SIZE, TILE_SIZE)
-                color = (0, 200, 0) if coord in ocupadas else (70, 70, 70)
+
+                if coord in impactos_recibidos:
+                    resultado = impactos_recibidos[coord]
+                    if resultado.startswith("500") or resultado.startswith("200"):
+                        color = (255, 0, 0)  # hundido
+                    elif resultado.startswith("202"):
+                        color = (255, 200, 0)  # impacto
+                    else:
+                        color = (50, 50, 255)  # agua
+                elif coord in ocupadas:
+                    color = (0, 200, 0)  # barco sin tocar
+                else:
+                    color = (70, 70, 70)  # vacío
+
                 pygame.draw.rect(screen, color, rect)
                 pygame.draw.rect(screen, (255, 255, 255), rect, 2)
 
@@ -40,6 +56,11 @@ def esperar_cliente(barcos):
         else:
             texto = font.render(f"Esperando conexión en {HOST}:{PORT}...", True, (255, 255, 255))
         screen.blit(texto, (10, SCREEN_SIZE + 10))
+
+        if ultimo_disparo:
+            texto_disparo = font.render(ultimo_disparo, True, (255, 255, 0))
+            screen.blit(texto_disparo, (10, SCREEN_SIZE + 35))
+
 
     def aceptar_conexion(socket_servidor):
         conn, addr = socket_servidor.accept()
@@ -180,6 +201,7 @@ def main():
 
     fsm = None
     conn = None
+    
 
     running = True
     while running:
@@ -205,11 +227,15 @@ def main():
                             conn.sendall(",".join(barcos_flat).encode())
 
                         elif mensaje.startswith("DISPARO:"):
+                            global impactos_recibidos, ultimo_disparo
                             if fsm is None:
                                 fsm = FSMServer(barcos)
                             coord = mensaje.split(":")[1]
                             respuesta = fsm.process_message(coord)
+                            impactos_recibidos[coord] = respuesta
+                            ultimo_disparo = f"Disparo en {coord} → {respuesta}"
                             conn.sendall(respuesta.encode())
+
 
                             if fsm.state == "q4":  # derrota
                                 conn.sendall("FIN".encode())
