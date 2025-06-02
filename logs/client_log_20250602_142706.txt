@@ -1,0 +1,19 @@
+--- Client Log 20250602_142706 ---
+14:27:06 - Posiciones de barcos del servidor: A2,B4,B5,E1,E2,E3
+14:27:07 - Disparo en A2: 200-hundido
+14:27:08 - Disparo en B3: 404-fallido
+14:27:10 - Disparo en C2: 404-fallido
+14:27:11 - Disparo en B1: 404-fallido
+14:27:12 - Disparo en D1: 404-fallido
+14:27:13 - Disparo en D3: 404-fallido
+14:27:14 - Disparo en D4: 404-fallido
+14:27:15 - Disparo en C3: 404-fallido
+14:27:16 - Disparo en A5: 404-fallido
+14:27:17 - Disparo en B5: 202-impactado
+14:27:18 - Disparo en C5: 404-fallido
+14:27:19 - Disparo en B4: 200-hundido
+14:27:21 - Disparo en E4: 404-fallido
+14:27:25 - Disparo en E2: 202-impactado
+14:27:26 - Disparo en E1: 202-impactado
+14:27:28 - Disparo en E3: 500-hundido
+14:27:28 - ¡Jugador ganó la partida!

@@ -1,0 +1,23 @@
+Posiciones de barcos del servidor: FIN
+Disparo en A1: C5,D1,D2,A2,A3,A4
+Disparo en C3: 404-fallidoFIN
+Disparo en B3: 404-fallidoFIN
+Disparo en A3: 404-fallidoFIN
+Disparo en A2: 404-fallidoFIN
+Disparo en B1: 404-fallidoFIN
+Disparo en C1: 404-fallidoFIN
+Disparo en D1: 404-fallidoFIN
+Disparo en E1: 404-fallidoFIN
+Disparo en E2: 404-fallidoFIN
+Disparo en E3: 404-fallidoFIN
+Disparo en E4: 404-fallidoFIN
+Disparo en D4: 404-fallidoFIN
+Disparo en C5: 404-fallidoFIN
+Disparo en A4: 404-fallidoFIN
+Disparo en B2: 404-fallidoFIN
+Disparo en C2: 404-fallidoFIN
+Disparo en A5: 404-fallidoFIN
+Disparo en B5: 404-fallidoFIN
+Disparo en B4: 404-fallidoFIN
+Disparo en C4: 404-fallidoFIN
+Jugador salió de la partida antes de terminar.

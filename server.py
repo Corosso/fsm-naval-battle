@@ -10,29 +10,51 @@ HOST = 'localhost'
 PORT = 65432
 TILE_SIZE = 80
 GRID_SIZE = 5
-SCREEN_SIZE = TILE_SIZE * GRID_SIZE
+
+# --- NUEVAS CONSTANTES PARA EL TAMAÑO DE LA PANTALLA Y EL OFFSET ---
+HEADER_OFFSET = TILE_SIZE # Espacio para números y letras (igual al tamaño de una celda)
+SCREEN_WIDTH_GAME = (GRID_SIZE * TILE_SIZE) + HEADER_OFFSET # Ancho del tablero + espacio para letras
+SCREEN_HEIGHT_GAME = (GRID_SIZE * TILE_SIZE) + HEADER_OFFSET + 60 # Alto del tablero + espacio para números + espacio para mensajes/botones
+# -------------------------------------------------------------------
 impactos_recibidos = {}  # coord -> código de resultado
 ultimo_disparo = ""      # texto a mostrar debajo
 
 
 def esperar_cliente(barcos):
     pygame.init()
-    screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE + 60))
+    # Usamos las nuevas constantes de tamaño para la ventana del juego
+    screen = pygame.display.set_mode((SCREEN_WIDTH_GAME, SCREEN_HEIGHT_GAME))
     pygame.display.set_caption("Servidor FSM - Esperando conexión")
 
     clock = pygame.time.Clock()
     font = pygame.font.SysFont(None, 28)
+    font_header = pygame.font.SysFont(None, 24) # Fuente más pequeña para encabezados
 
     ocupadas = set(c for barco in barcos for c in barco)
 
     conectado = [False]  # Será (conn, addr) cuando se conecte
 
-    def draw_grid():
-        screen.fill((0, 0, 0))
+    def draw_grid_server(): # Renombrado para claridad, ya que tendrás otra draw_grid
+        screen.fill((0, 0, 200))
+
+        # --- DIBUJAR NÚMEROS (ENCABEZADOS DE COLUMNA) ---
+        for col in range(GRID_SIZE):
+            text_surface = font_header.render(str(col + 1), True, (255, 255, 255))
+            screen.blit(text_surface, (HEADER_OFFSET + col * TILE_SIZE + TILE_SIZE // 2 - text_surface.get_width() // 2,
+                                       HEADER_OFFSET // 2 - text_surface.get_height() // 2))
+
+        # --- DIBUJAR LETRAS (ENCABEZADOS DE FILA) ---
+        for fila in range(GRID_SIZE):
+            text_surface = font_header.render(chr(65 + fila), True, (255, 255, 255))
+            screen.blit(text_surface, (HEADER_OFFSET // 2 - text_surface.get_width() // 2,
+                                       HEADER_OFFSET + fila * TILE_SIZE + TILE_SIZE // 2 - text_surface.get_height() // 2))
+
+        # --- DIBUJAR EL TABLERO PROPIAMENTE DICHO ---
         for fila in range(GRID_SIZE):
             for col in range(GRID_SIZE):
                 coord = f"{chr(65 + fila)}{col + 1}"
-                rect = pygame.Rect(col * TILE_SIZE, fila * TILE_SIZE, TILE_SIZE, TILE_SIZE)
+                # Ajustamos la posición de dibujo de cada celda para el offset
+                rect = pygame.Rect(HEADER_OFFSET + col * TILE_SIZE, HEADER_OFFSET + fila * TILE_SIZE, TILE_SIZE, TILE_SIZE)
 
                 if coord in impactos_recibidos:
                     resultado = impactos_recibidos[coord]
@@ -50,32 +72,32 @@ def esperar_cliente(barcos):
                 pygame.draw.rect(screen, color, rect)
                 pygame.draw.rect(screen, (255, 255, 255), rect, 2)
 
+        # --- MENSAJES DE ESTADO (ABAJO DEL TABLERO) ---
         if conectado[0]:
             conn, addr = conectado[0]
             texto = font.render(f"Cliente conectado: {addr[0]}:{addr[1]}", True, (255, 255, 255))
         else:
             texto = font.render(f"Esperando conexión en {HOST}:{PORT}...", True, (255, 255, 255))
-        screen.blit(texto, (10, SCREEN_SIZE + 10))
+        # Ajustamos la posición para que esté debajo del tablero y los encabezados
+        screen.blit(texto, (10, SCREEN_HEIGHT_GAME - 50)) # Ajusta este 50 si necesitas más espacio
 
         if ultimo_disparo:
             texto_disparo = font.render(ultimo_disparo, True, (255, 255, 0))
-            screen.blit(texto_disparo, (10, SCREEN_SIZE + 35))
+            # Ajustamos la posición para que esté debajo del mensaje anterior
+            screen.blit(texto_disparo, (10, SCREEN_HEIGHT_GAME - 25))
 
 
     def aceptar_conexion(socket_servidor):
         conn, addr = socket_servidor.accept()
         conectado[0] = (conn, addr)
 
-    return screen, clock, draw_grid, conectado, aceptar_conexion
-
-
-
-def coord_a_str(fila, col):
-    return f"{chr(65 + fila)}{col + 1}"
+    # Devolvemos la nueva función de dibujo
+    return screen, clock, draw_grid_server, conectado, aceptar_conexion
 
 def seleccionar_barcos():
     pygame.init()
-    screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE + 80))
+    # Usamos las nuevas constantes de tamaño para la ventana del juego
+    screen = pygame.display.set_mode((SCREEN_WIDTH_GAME, SCREEN_HEIGHT_GAME))
     pygame.display.set_caption("Coloca tus 3 barcos: 1, 2 y 3 casillas")
     clock = pygame.time.Clock()
 
@@ -87,6 +109,7 @@ def seleccionar_barcos():
     mouse_hover = None
 
     font = pygame.font.SysFont(None, 28)
+    font_header = pygame.font.SysFont(None, 24) # Fuente más pequeña para encabezados
 
     def coord_a_str(fila, col):
         return f"{chr(65 + fila)}{col + 1}"
@@ -99,55 +122,78 @@ def seleccionar_barcos():
         for i in range(size):
             r = start_row + (i if orient == "V" else 0)
             c = start_col + (i if orient == "H" else 0)
+            # Asegurarse de que la previsualización no salga de la cuadrícula
             if 0 <= r < GRID_SIZE and 0 <= c < GRID_SIZE:
                 coords.append(coord_a_str(r, c))
             else:
                 return []  # Se sale del tablero
         return coords
 
-    def validar_barco(coords, tamaño):
-        if len(coords) != tamaño:
+    # No estoy seguro de dónde usas validar_barco, pero asegúrate que las coordenadas
+    # que le pasas ya sean las lógicas (0-indexed). Si vienen de un clic, necesitan el offset.
+    def validar_barco(coords_idx, tamaño): # Cambiado para aceptar coords_idx directamente
+        if len(coords_idx) != tamaño:
             return False
-        filas = sorted(set(coord[0] for coord in coords))
-        cols = sorted(set(coord[1] for coord in coords))
-        if len(filas) == 1:
-            return cols == list(range(min(cols), max(cols) + 1))
-        elif len(cols) == 1:
-            return filas == list(range(min(filas), max(filas) + 1))
+        filas_set = set(r for r, c in coords_idx)
+        cols_set = set(c for r, c in coords_idx)
+
+        # Check for single row or single column alignment
+        if len(filas_set) == 1: # Horizontal
+            return len(cols_set) == tamaño and (max(cols_set) - min(cols_set) + 1) == tamaño
+        elif len(cols_set) == 1: # Vertical
+            return len(filas_set) == tamaño and (max(filas_set) - min(filas_set) + 1) == tamaño
         return False
 
-    def draw_grid(preview_coords=None):
+    def draw_grid_placement(preview_coords=None): # Renombrado
+        screen.fill((0, 0, 200))
+
+        # --- DIBUJAR NÚMEROS (ENCABEZADOS DE COLUMNA) ---
+        for col in range(GRID_SIZE):
+            text_surface = font_header.render(str(col + 1), True, (255, 255, 255))
+            screen.blit(text_surface, (HEADER_OFFSET + col * TILE_SIZE + TILE_SIZE // 2 - text_surface.get_width() // 2,
+                                       HEADER_OFFSET // 2 - text_surface.get_height() // 2))
+
+        # --- DIBUJAR LETRAS (ENCABEZADOS DE FILA) ---
+        for fila in range(GRID_SIZE):
+            text_surface = font_header.render(chr(65 + fila), True, (255, 255, 255))
+            screen.blit(text_surface, (HEADER_OFFSET // 2 - text_surface.get_width() // 2,
+                                       HEADER_OFFSET + fila * TILE_SIZE + TILE_SIZE // 2 - text_surface.get_height() // 2))
+
+
+        # --- DIBUJAR EL TABLERO PROPIAMENTE DICHO ---
         for fila in range(GRID_SIZE):
             for col in range(GRID_SIZE):
                 coord = coord_a_str(fila, col)
-                rect = pygame.Rect(col * TILE_SIZE, fila * TILE_SIZE, TILE_SIZE, TILE_SIZE)
+                # Ajustamos la posición de dibujo de cada celda para el offset
+                rect = pygame.Rect(HEADER_OFFSET + col * TILE_SIZE, HEADER_OFFSET + fila * TILE_SIZE, TILE_SIZE, TILE_SIZE)
 
                 if coord in todos_ocupados:
-                    color = (0, 200, 0)
+                    color = (0, 200, 0) # Barco ya colocado
                 elif preview_coords and coord in preview_coords:
-                    color = (255, 200, 0)
+                    color = (255, 200, 0) # Previsualización del barco
                 else:
-                    color = (70, 70, 70)
+                    color = (70, 70, 70) # Espacio vacío
 
                 pygame.draw.rect(screen, color, rect)
                 pygame.draw.rect(screen, (255, 255, 255), rect, 2)
 
-        # Mensaje con nombre del barco y orientación
+        # Mensaje con nombre del barco y orientación (abajo del tablero)
         if index_barco < len(barcos_def):
             nombre, tamaño = barcos_def[index_barco]
             texto = font.render(f"{nombre} ({tamaño}): orientacion {orientacion}", True, (255, 255, 255))
-            screen.blit(texto, (10, SCREEN_SIZE + 10))
+            screen.blit(texto, (10, SCREEN_HEIGHT_GAME - 50)) # Ajusta la posición
 
     running = True
     while running:
-        screen.fill((30, 30, 30))
+       
 
         preview_coords = []
         if mouse_hover:
-            fila, col = mouse_hover
-            preview_coords = get_preview_coords(fila, col, barcos_def[index_barco][1], orientacion)
+            # get_preview_coords ya espera filas/columnas lógicas
+            fila_logic, col_logic = mouse_hover
+            preview_coords = get_preview_coords(fila_logic, col_logic, barcos_def[index_barco][1], orientacion)
 
-        draw_grid(preview_coords)
+        draw_grid_placement(preview_coords) # Llamamos a la función renombrada
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -159,18 +205,28 @@ def seleccionar_barcos():
                     orientacion = "V" if orientacion == "H" else "H"
 
             elif event.type == pygame.MOUSEMOTION:
-                x, y = pygame.mouse.get_pos()
-                if y < SCREEN_SIZE:
-                    fila = y // TILE_SIZE
-                    col = x // TILE_SIZE
-                    mouse_hover = (fila, col)
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+                # ¡Importante! Resta el HEADER_OFFSET para obtener las coordenadas lógicas
+                if mouse_x > HEADER_OFFSET and mouse_y > HEADER_OFFSET and \
+                   mouse_x < SCREEN_WIDTH_GAME and mouse_y < (SCREEN_HEIGHT_GAME - 60): # Limita el área de hover
+                    fila = (mouse_y - HEADER_OFFSET) // TILE_SIZE
+                    col = (mouse_x - HEADER_OFFSET) // TILE_SIZE
+                    # Asegúrate de que las coordenadas estén dentro del GRID_SIZE
+                    if 0 <= fila < GRID_SIZE and 0 <= col < GRID_SIZE:
+                        mouse_hover = (fila, col)
+                    else:
+                        mouse_hover = None
                 else:
                     mouse_hover = None
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if preview_coords and all(c not in todos_ocupados for c in preview_coords):
-                    coords_idx = [str_a_coord(c) for c in preview_coords]
-                    if validar_barco(coords_idx, barcos_def[index_barco][1]):
+                    # Validamos las coordenadas lógicas, no las de píxeles
+                    # Las 'preview_coords' ya están en formato 'A1', 'B2', etc.
+                    # Necesitamos convertirlas a (fila, col) para 'validar_barco'
+                    coords_idx_for_validation = [str_a_coord(c) for c in preview_coords]
+                    
+                    if validar_barco(coords_idx_for_validation, barcos_def[index_barco][1]):
                         barcos_colocados.append(preview_coords.copy())
                         todos_ocupados.update(preview_coords)
                         index_barco += 1

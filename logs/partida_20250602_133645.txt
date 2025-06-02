@@ -1,0 +1,1 @@
+Posiciones de barcos del servidor: A1,B4,B5,B1,B2,B3

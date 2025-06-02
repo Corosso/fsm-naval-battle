@@ -1,0 +1,16 @@
+Posiciones de barcos del servidor: A2,B3,B4,C1,C2,C3
+Disparo en A2: 200-hundido
+Disparo en A3: 404-fallido
+Disparo en A1: 404-fallido
+Disparo en B2: 404-fallido
+Disparo en C2: 202-impactado
+Disparo en C1: 202-impactado
+Disparo en C3: 200-hundido
+Disparo en D3: 404-fallido
+Disparo en D4: 404-fallido
+Disparo en D5: 404-fallido
+Disparo en E4: 404-fallido
+Disparo en E3: 404-fallido
+Disparo en B3: 202-impactado
+Disparo en B4: 500-hundido
+¡Jugador ganó la partida!

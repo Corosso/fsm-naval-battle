@@ -1,0 +1,2 @@
+--- Client Log 20250602_152149 ---
+15:21:49 - Posiciones de barcos del servidor (oponente): C3,C4,C5,B3,B4,B5

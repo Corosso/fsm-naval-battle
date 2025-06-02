@@ -1,0 +1,8 @@
+Posiciones de barcos del servidor: B3,B1,B2,A1,A2,A3
+Disparo en A1: 202-impactado
+Disparo en A2: 202-impactado
+Disparo en A3: 200-hundido
+Disparo en B3: 200-hundido
+Disparo en B2: 202-impactado
+Disparo en B1: 500-hundido
+¡Jugador ganó la partida!
