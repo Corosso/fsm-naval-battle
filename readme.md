@@ -16,11 +16,15 @@ Este es un juego simple de Batalla Naval basado en una Máquina de Estados Finit
 
 ## 📁 Estructura de Archivos
 
--├── client_gui.py # Cliente con GUI en Pygame
--├── server.py # Servidor que recibe disparos
--├── fsm_server.py # Lógica FSM y clase Barco
--├── logs/ # Carpeta con logs de partidas
--└── README.md
+├── client_gui.py # Cliente con GUI en Pygame
+
+├── server.py # Servidor que recibe disparos
+
+├── fsm_server.py # Lógica FSM y clase Barco
+
+├── logs/ # Carpeta con logs de partidas
+
+└── README.md
 
 ## Instalación
 
@@ -36,7 +40,7 @@ pip install pygame
 ```bash
 python server.py
 ```
-- Y escoger la posicion de los barcos, el boton reiniciar es para reiniciar la selección de la posición de los barcos con click, y con la R puedes rotar la posición entre horizontal o vertical
+- Con click elige la posición de los barcos, con R la orientación (horizontal o vertical) y el botón reiniciar es para volver a escoger la posición de los barcos 
 
   
 - En la segunda terminal ejecutar el siguiente comando
