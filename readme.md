@@ -15,11 +15,12 @@ Este es un juego simple de Batalla Naval basado en una Máquina de Estados Finit
 - `q4`: Todos los barcos hundidos (fin del juego).
 
 ## 📁 Estructura de Archivos
-├── client_gui.py # Cliente con GUI en Pygame
-├── server.py # Servidor que recibe disparos
-├── fsm_server.py # Lógica FSM y clase Barco
-├── logs/ # Carpeta con logs de partidas
-└── README.md
+
+-├── client_gui.py # Cliente con GUI en Pygame
+-├── server.py # Servidor que recibe disparos
+-├── fsm_server.py # Lógica FSM y clase Barco
+-├── logs/ # Carpeta con logs de partidas
+-└── README.md
 
 ## Instalación
 
