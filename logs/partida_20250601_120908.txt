@@ -1,7 +1,0 @@
-Posiciones de barcos del servidor: 404 Not Found
-Disparo en E1: HIT
-Disparo en E2: HIT
-Disparo en E3: HIT
-Disparo en E4: HIT
-Disparo en E5: WIN
-¡Jugador ganó la partida!

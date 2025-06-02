@@ -1,7 +1,0 @@
-Posiciones de barcos del servidor: C3,C2,E1,D2,D1
-Disparo en E1: HIT
-Disparo en D2: HIT
-Disparo en D1: HIT
-Disparo en C2: HIT
-Disparo en C3: WIN
-¡Jugador ganó la partida!
