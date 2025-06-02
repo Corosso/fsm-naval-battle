@@ -4,8 +4,7 @@ import sys
 import os
 from datetime import datetime
 
-HOST = 'localhost'
-PORT = 65432
+
 TILE_SIZE = 80
 GRID_SIZE = 5
 SCREEN_SIZE = TILE_SIZE * GRID_SIZE
@@ -113,15 +112,86 @@ def main_menu(screen, clock, client_socket):
         pygame.display.flip()
         clock.tick(30)
 
+def pedir_direccion_servidor():
+    pygame.init()
+    screen = pygame.display.set_mode((400, 250))
+    pygame.display.set_caption("Conectar al servidor FSM")
+    font = pygame.font.SysFont(None, 32)
+
+    input_box_ip = pygame.Rect(100, 50, 200, 32)
+    input_box_port = pygame.Rect(100, 110, 200, 32)
+    color_inactive = pygame.Color('lightskyblue3')
+    color_active = pygame.Color('dodgerblue2')
+    color = color_inactive
+    active_ip = True
+    active_port = False
+    ip_text = 'localhost'
+    port_text = '65432'
+    done = False
+
+    connect_btn = pygame.Rect(150, 170, 100, 40)
+
+    while not done:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if input_box_ip.collidepoint(event.pos):
+                    active_ip = True
+                    active_port = False
+                elif input_box_port.collidepoint(event.pos):
+                    active_port = True
+                    active_ip = False
+                elif connect_btn.collidepoint(event.pos):
+                    return ip_text.strip(), int(port_text.strip())
+
+            if event.type == pygame.KEYDOWN:
+                if active_ip:
+                    if event.key == pygame.K_BACKSPACE:
+                        ip_text = ip_text[:-1]
+                    else:
+                        ip_text += event.unicode
+                elif active_port:
+                    if event.key == pygame.K_BACKSPACE:
+                        port_text = port_text[:-1]
+                    elif event.unicode.isdigit():
+                        port_text += event.unicode
+
+        screen.fill((30, 30, 30))
+        txt_surface_ip = font.render(ip_text, True, color)
+        txt_surface_port = font.render(port_text, True, color)
+
+        screen.blit(font.render("IP del servidor:", True, pygame.Color('white')), (100, 20))
+        screen.blit(txt_surface_ip, (input_box_ip.x+5, input_box_ip.y+5))
+        pygame.draw.rect(screen, color_active if active_ip else color_inactive, input_box_ip, 2)
+
+        screen.blit(font.render("Puerto:", True, pygame.Color('white')), (100, 80))
+        screen.blit(txt_surface_port, (input_box_port.x+5, input_box_port.y+5))
+        pygame.draw.rect(screen, color_active if active_port else color_inactive, input_box_port, 2)
+
+        pygame.draw.rect(screen, (0, 200, 100), connect_btn)
+        screen.blit(font.render("Conectar", True, (255, 255, 255)), (connect_btn.x + 10, connect_btn.y + 8))
+
+        pygame.display.flip()
+
+
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE + 50))
     pygame.display.set_caption("Cliente FSM Naval Battle")
     clock = pygame.time.Clock()
+    
+    HOST, PORT = pedir_direccion_servidor()
+    SCREEN = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE + 50))  # volver al tamaño del juego
+
 
     try:
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client_socket.connect((HOST, PORT))
+
         client_socket.settimeout(2)  # evita bloqueo total si el servidor no responde
     except:
         print("No se pudo conectar al servidor.")
