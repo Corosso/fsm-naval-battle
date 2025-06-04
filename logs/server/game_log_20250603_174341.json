@@ -1,0 +1,189 @@
+{
+    "timestamp_inicio": "20250603_174341",
+    "eventos": [
+        {
+            "timestamp": "17:43:41",
+            "tipo": "inicio_servidor",
+            "datos": {
+                "host": "localhost",
+                "port": 65432
+            }
+        },
+        {
+            "timestamp": "17:43:44",
+            "tipo": "nueva_conexion",
+            "datos": {
+                "addr": "127.0.0.1:58607"
+            }
+        },
+        {
+            "timestamp": "17:43:45",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "GET_SHIPS",
+                "addr": "127.0.0.1:58607"
+            }
+        },
+        {
+            "timestamp": "17:43:45",
+            "tipo": "barcos_enviados",
+            "datos": {
+                "addr": "127.0.0.1:58607",
+                "barcos": [
+                    "A1",
+                    "B1",
+                    "B2",
+                    "C1",
+                    "C2",
+                    "C3"
+                ]
+            }
+        },
+        {
+            "timestamp": "17:43:46",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "DISPARO:A1",
+                "addr": "127.0.0.1:58607"
+            }
+        },
+        {
+            "timestamp": "17:43:46",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "addr": "127.0.0.1:58607",
+                "coordenada": "A1",
+                "respuesta": "200-hundido"
+            }
+        },
+        {
+            "timestamp": "17:43:47",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "DISPARO:B1",
+                "addr": "127.0.0.1:58607"
+            }
+        },
+        {
+            "timestamp": "17:43:47",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "addr": "127.0.0.1:58607",
+                "coordenada": "B1",
+                "respuesta": "202-impactado"
+            }
+        },
+        {
+            "timestamp": "17:43:47",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "DISPARO:B2",
+                "addr": "127.0.0.1:58607"
+            }
+        },
+        {
+            "timestamp": "17:43:47",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "addr": "127.0.0.1:58607",
+                "coordenada": "B2",
+                "respuesta": "200-hundido"
+            }
+        },
+        {
+            "timestamp": "17:43:47",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "DISPARO:B3",
+                "addr": "127.0.0.1:58607"
+            }
+        },
+        {
+            "timestamp": "17:43:47",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "addr": "127.0.0.1:58607",
+                "coordenada": "B3",
+                "respuesta": "404-fallido"
+            }
+        },
+        {
+            "timestamp": "17:43:48",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "DISPARO:C2",
+                "addr": "127.0.0.1:58607"
+            }
+        },
+        {
+            "timestamp": "17:43:48",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "addr": "127.0.0.1:58607",
+                "coordenada": "C2",
+                "respuesta": "202-impactado"
+            }
+        },
+        {
+            "timestamp": "17:43:48",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "DISPARO:C3",
+                "addr": "127.0.0.1:58607"
+            }
+        },
+        {
+            "timestamp": "17:43:48",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "addr": "127.0.0.1:58607",
+                "coordenada": "C3",
+                "respuesta": "202-impactado"
+            }
+        },
+        {
+            "timestamp": "17:43:48",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "DISPARO:C1",
+                "addr": "127.0.0.1:58607"
+            }
+        },
+        {
+            "timestamp": "17:43:48",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "addr": "127.0.0.1:58607",
+                "coordenada": "C1",
+                "respuesta": "500-hundido"
+            }
+        },
+        {
+            "timestamp": "17:43:48",
+            "tipo": "juego_terminado",
+            "datos": {
+                "addr": "127.0.0.1:58607",
+                "razon": "derrota",
+                "estado": "q4"
+            }
+        },
+        {
+            "timestamp": "17:43:50",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "CLOSE_SERVER",
+                "addr": "127.0.0.1:58607"
+            }
+        },
+        {
+            "timestamp": "17:43:50",
+            "tipo": "error",
+            "datos": {
+                "tipo": "conexion",
+                "addr": "127.0.0.1:58607",
+                "mensaje": "Cliente desconectado"
+            }
+        }
+    ],
+    "estado_final": null
+}

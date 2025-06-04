@@ -1,0 +1,15 @@
+{
+    "timestamp_inicio": "20250603_174238",
+    "eventos": [
+        {
+            "timestamp": "17:42:38",
+            "tipo": "procesar_mensaje",
+            "datos": {
+                "mensaje": "A1",
+                "resultado": "200-hundido",
+                "estado_actual": "q3"
+            }
+        }
+    ],
+    "estado_final": null
+}

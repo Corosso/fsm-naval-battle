@@ -1,0 +1,4 @@
+--- Client Log 20250603_165944 ---
+16:59:44 - Posiciones de barcos del servidor (oponente): A1,B1,B2,C1,C2,C3
+16:59:44 - Disparo en A1: 
+16:59:50 - Jugador salió de la partida antes de terminar.

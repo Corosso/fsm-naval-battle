@@ -1,0 +1,14 @@
+{
+    "timestamp_inicio": "20250603_190755",
+    "eventos": [
+        {
+            "timestamp": "19:07:55",
+            "tipo": "conexion_establecida",
+            "datos": {
+                "host": "localhost",
+                "port": 65432
+            }
+        }
+    ],
+    "estado_final": null
+}

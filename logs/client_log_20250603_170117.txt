@@ -1,0 +1,3 @@
+--- Client Log 20250603_170117 ---
+17:01:17 - Posiciones de barcos del servidor (oponente): A1,B1,B2,C1,C2,C3
+17:01:18 - Disparo en A1: 

@@ -1,0 +1,10 @@
+--- Client Log 20250603_172501 ---
+17:25:01 - Posiciones de barcos del servidor (oponente): A1,B1,B2,C1,C2,C3
+17:25:07 - Disparo en A1: 200-hundido
+17:25:08 - Disparo en B1: 202-impactado
+17:25:09 - Disparo en B2: 200-hundido
+17:25:10 - Disparo en B3: 404-fallido
+17:25:10 - Disparo en C2: 202-impactado
+17:25:11 - Disparo en C3: 202-impactado
+17:25:11 - Disparo en D4: 404-fallido
+17:25:12 - Disparo en C1: 500-hundido

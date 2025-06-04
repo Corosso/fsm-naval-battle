@@ -1,0 +1,79 @@
+{
+    "timestamp_inicio": "20250603_174344",
+    "eventos": [
+        {
+            "timestamp": "17:43:45",
+            "tipo": "obtener_barcos",
+            "datos": {
+                "barcos": [
+                    "A1",
+                    "B1",
+                    "B2",
+                    "C1",
+                    "C2",
+                    "C3"
+                ]
+            }
+        },
+        {
+            "timestamp": "17:43:46",
+            "tipo": "disparo",
+            "datos": {
+                "coordenada": "A1",
+                "respuesta": "200-hundido"
+            }
+        },
+        {
+            "timestamp": "17:43:47",
+            "tipo": "disparo",
+            "datos": {
+                "coordenada": "B1",
+                "respuesta": "202-impactado"
+            }
+        },
+        {
+            "timestamp": "17:43:47",
+            "tipo": "disparo",
+            "datos": {
+                "coordenada": "B2",
+                "respuesta": "200-hundido"
+            }
+        },
+        {
+            "timestamp": "17:43:47",
+            "tipo": "disparo",
+            "datos": {
+                "coordenada": "B3",
+                "respuesta": "404-fallido"
+            }
+        },
+        {
+            "timestamp": "17:43:48",
+            "tipo": "disparo",
+            "datos": {
+                "coordenada": "C2",
+                "respuesta": "202-impactado"
+            }
+        },
+        {
+            "timestamp": "17:43:48",
+            "tipo": "disparo",
+            "datos": {
+                "coordenada": "C3",
+                "respuesta": "202-impactado"
+            }
+        },
+        {
+            "timestamp": "17:43:48",
+            "tipo": "disparo",
+            "datos": {
+                "coordenada": "C1",
+                "respuesta": "500-hundido"
+            }
+        }
+    ],
+    "estado_final": {
+        "timestamp": "17:43:48",
+        "estado": "victoria"
+    }
+}

@@ -1,0 +1,136 @@
+{
+    "timestamp_inicio": "20250603_174800",
+    "eventos": [
+        {
+            "timestamp": "17:48:00",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "A1",
+                "estado_actual": "q1"
+            }
+        },
+        {
+            "timestamp": "17:48:00",
+            "tipo": "mensaje_procesado",
+            "datos": {
+                "mensaje": "A1",
+                "resultado": "200-hundido",
+                "estado_actual": "q3"
+            }
+        },
+        {
+            "timestamp": "17:48:00",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "B1",
+                "estado_actual": "q3"
+            }
+        },
+        {
+            "timestamp": "17:48:00",
+            "tipo": "mensaje_procesado",
+            "datos": {
+                "mensaje": "B1",
+                "resultado": "202-impactado",
+                "estado_actual": "q2"
+            }
+        },
+        {
+            "timestamp": "17:48:00",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "B2",
+                "estado_actual": "q2"
+            }
+        },
+        {
+            "timestamp": "17:48:00",
+            "tipo": "mensaje_procesado",
+            "datos": {
+                "mensaje": "B2",
+                "resultado": "200-hundido",
+                "estado_actual": "q3"
+            }
+        },
+        {
+            "timestamp": "17:48:01",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "B3",
+                "estado_actual": "q3"
+            }
+        },
+        {
+            "timestamp": "17:48:01",
+            "tipo": "mensaje_procesado",
+            "datos": {
+                "mensaje": "B3",
+                "resultado": "404-fallido",
+                "estado_actual": "q3"
+            }
+        },
+        {
+            "timestamp": "17:48:01",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "C3",
+                "estado_actual": "q3"
+            }
+        },
+        {
+            "timestamp": "17:48:01",
+            "tipo": "mensaje_procesado",
+            "datos": {
+                "mensaje": "C3",
+                "resultado": "202-impactado",
+                "estado_actual": "q2"
+            }
+        },
+        {
+            "timestamp": "17:48:01",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "C2",
+                "estado_actual": "q2"
+            }
+        },
+        {
+            "timestamp": "17:48:01",
+            "tipo": "mensaje_procesado",
+            "datos": {
+                "mensaje": "C2",
+                "resultado": "202-impactado",
+                "estado_actual": "q2"
+            }
+        },
+        {
+            "timestamp": "17:48:01",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "C1",
+                "estado_actual": "q2"
+            }
+        },
+        {
+            "timestamp": "17:48:01",
+            "tipo": "mensaje_procesado",
+            "datos": {
+                "mensaje": "C1",
+                "resultado": "500-hundido",
+                "estado_actual": "q4"
+            }
+        },
+        {
+            "timestamp": "17:48:01",
+            "tipo": "juego_terminado",
+            "datos": {
+                "razon": "derrota",
+                "estado_final": "q4"
+            }
+        }
+    ],
+    "estado_final": {
+        "timestamp": "17:48:01",
+        "estado": "derrota"
+    }
+}
