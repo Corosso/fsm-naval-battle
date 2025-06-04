@@ -19,6 +19,7 @@ class FSMServer:
         self.estado_actual = "ESPERANDO_DISPARO"
         self.ultimo_disparo: Optional[str] = None
         self.ultimo_resultado: Optional[str] = None
+        self.juego_terminado = False
 
     def process_message(self, mensaje: str) -> str:
         """
@@ -62,11 +63,12 @@ class FSMServer:
         })
 
         # Determinar el código de respuesta según el resultado
-        if resultado == ResultadoDisparo.HUNDIDO:
-            if self.juego.estado == EstadoJuego.DERROTA:
-                return "500 GAME OVER"
+        if resultado == ResultadoDisparo.VICTORIA:
+            self.juego_terminado = True
+            return "500 GAME OVER"
+        elif resultado == ResultadoDisparo.HUNDIDO:
             return "200 HUNDIDO"
-        elif resultado == ResultadoDisparo.IMPACTO:
+        elif resultado == ResultadoDisparo.IMPACTADO:
             return "202 IMPACTO"
         else:
             return "404 AGUA"

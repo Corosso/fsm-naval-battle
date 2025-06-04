@@ -1,8 +1,10 @@
 import pygame
 import sys
+import os
 from typing import Tuple
 from common.constants import *
-from .client import Client
+from .client import Client, JuegoCliente
+
 
 class GUI:
     """
@@ -23,6 +25,14 @@ class GUI:
         self.font_header = pygame.font.SysFont(FONT_DEFAULT_NAME, FONT_HEADER_GRID_SIZE)
         self.font_input = pygame.font.SysFont(FONT_DEFAULT_NAME, FONT_INPUT_SIZE)
         self.font_result = pygame.font.SysFont(FONT_DEFAULT_NAME, FONT_RESULT_MESSAGE_SIZE)
+
+        # Cargar textura de agua
+        try:
+            water_texture_path = os.path.join(IMAGES_DIR, WATER_TEXTURE_FILE)
+            self.water_background = pygame.image.load(water_texture_path)
+            self.water_background = pygame.transform.scale(self.water_background, (SCREEN_WIDTH_GAME, SCREEN_HEIGHT_GAME))
+        except:
+            self.water_background = None
 
     def pedir_direccion_servidor(self):
         """
@@ -141,12 +151,12 @@ class GUI:
             connection_screen.fill((30, 30, 30)) # Fondo de la ventana de conexión
             
             # --- Dibujar campo de IP ---
-            connection_screen.blit(FONT_INPUT.render("IP del servidor:", True, COLOR_WHITE), (100, 20))
+            connection_screen.blit(self.font_input.render("IP del servidor:", True, COLOR_WHITE), (100, 20))
             # Dibuja el rectángulo del input box
             pygame.draw.rect(connection_screen, color_active if active_ip else color_inactive, input_box_ip, 2)
             
             # Renderiza el texto
-            text_surface_ip = FONT_INPUT.render(ip_text, True, COLOR_WHITE)
+            text_surface_ip = self.font_input.render(ip_text, True, COLOR_WHITE)
             
             # Define el área donde se bliteará el texto dentro del input box
             text_display_rect_ip = pygame.Rect(input_box_ip.x + text_padding, 
@@ -168,11 +178,11 @@ class GUI:
 
 
             # --- Dibujar campo de Puerto ---
-            connection_screen.blit(FONT_INPUT.render("Puerto:", True, COLOR_WHITE), (100, 99))
+            connection_screen.blit(self.font_input.render("Puerto:", True, COLOR_WHITE), (100, 99))
             pygame.draw.rect(connection_screen, color_active if active_port else color_inactive, input_box_port, 2)
 
             # Renderiza el texto del puerto
-            text_surface_port = FONT_INPUT.render(port_text, True, COLOR_WHITE)
+            text_surface_port = self.font_input.render(port_text, True, COLOR_WHITE)
 
             # Define el área donde se bliteará el texto dentro del input box
             text_display_rect_port = pygame.Rect(input_box_port.x + text_padding, 
@@ -189,8 +199,8 @@ class GUI:
 
 
             # Dibuja el botón de Conectar con la nueva función
-            draw_button(connection_screen, connect_btn_rect, connect_btn_color, connect_btn_shadow_color, 
-                        "Conectar", FONT_INPUT, COLOR_WHITE)
+            self.draw_button(connection_screen, connect_btn_rect, connect_btn_color, connect_btn_shadow_color, 
+                        "Conectar", self.font_input, COLOR_WHITE)
 
             pygame.display.flip()
 
@@ -263,7 +273,7 @@ class GUI:
             pygame.display.flip()
             self.clock.tick(30)
 
-    def draw_grid(screen, juego: JuegoCliente):
+    def draw_grid(self, screen, juego: JuegoCliente):
         """
         Dibuja el tablero de juego del cliente, incluyendo encabezados y celdas.
         
@@ -272,20 +282,20 @@ class GUI:
             juego (JuegoCliente): Instancia del juego que contiene el estado actual
         """
         # --- Fondo de la pantalla ---
-        if WATER_BACKGROUND:
-            screen.blit(WATER_BACKGROUND, (0, 0))
+        if self.water_background:
+            screen.blit(self.water_background, (0, 0))
         else:
             screen.fill(COLOR_BLUE_WATER) 
 
         # --- DIBUJAR NÚMEROS (ENCABEZADOS DE COLUMNA) ---
         for col in range(GRID_SIZE):
-            text_surface = FONT_HEADER_GRID.render(str(col + 1), True, COLOR_WHITE)
+            text_surface = self.font_header.render(str(col + 1), True, COLOR_WHITE)
             screen.blit(text_surface, (HEADER_OFFSET + col * TILE_SIZE + TILE_SIZE // 2 - text_surface.get_width() // 2,
                                     HEADER_OFFSET // 2 - text_surface.get_height() // 2))
 
         # --- DIBUJAR LETRAS (ENCABEZADOS DE FILA) ---
         for fila in range(GRID_SIZE):
-            text_surface = FONT_HEADER_GRID.render(chr(65 + fila), True, COLOR_WHITE)
+            text_surface = self.font_header.render(chr(65 + fila), True, COLOR_WHITE)
             screen.blit(text_surface, (HEADER_OFFSET // 2 - text_surface.get_width() // 2,
                                     HEADER_OFFSET + fila * TILE_SIZE + TILE_SIZE // 2 - text_surface.get_height() // 2))
 
@@ -301,11 +311,55 @@ class GUI:
 
         # --- MENSAJE DE RESULTADO FINAL DE PARTIDA (si aplica) ---
         if juego.juego_activo:
-            text_res = FONT_RESULT_MESSAGE.render("Juego en curso...", True, COLOR_YELLOW)
+            text_res = self.font_result.render("Juego en curso...", True, COLOR_YELLOW)
             screen.blit(text_res, (20, SCREEN_HEIGHT_GAME - 40))
         else:
-            text_res = FONT_RESULT_MESSAGE.render("¡Jugador ganó la partida!", True, COLOR_YELLOW)
+            text_res = self.font_result.render("¡Jugador ganó la partida!", True, COLOR_YELLOW)
             screen.blit(text_res, (20, SCREEN_HEIGHT_GAME - 40))
+
+    def draw_button(self, screen, rect, color, shadow_color, text, font, text_color):
+        """
+        Dibuja un botón con efecto de relieve.
+        
+        Args:
+            screen (pygame.Surface): Superficie donde se dibujará el botón
+            rect (pygame.Rect): Rectángulo que define el área del botón
+            color (tuple): Color principal del botón (RGB)
+            shadow_color (tuple): Color de la sombra del botón (RGB)
+            text (str): Texto a mostrar en el botón
+            font (pygame.font.Font): Fuente para el texto
+            text_color (tuple): Color del texto (RGB)
+        """
+        # Dibujar sombra
+        pygame.draw.rect(screen, shadow_color, 
+                        (rect.x + 3, rect.y + 3, rect.width, rect.height))
+        # Dibujar botón principal
+        pygame.draw.rect(screen, color, rect)
+        # Renderizar y centrar texto
+        text_surface = font.render(text, True, text_color)
+        text_rect = text_surface.get_rect(center=rect.center)
+        screen.blit(text_surface, text_rect)
+
+    def draw_multiline_text_centered(self, text, font, color, screen, rect):
+        """
+        Dibuja texto multilinea centrado dentro de un rectángulo.
+        
+        Args:
+            text (str): Texto a mostrar (puede contener \n para saltos de línea)
+            font (pygame.font.Font): Fuente para el texto
+            color (tuple): Color del texto (RGB)
+            screen (pygame.Surface): Superficie donde se dibujará el texto
+            rect (pygame.Rect): Rectángulo donde se centrará el texto
+        """
+        lines = text.split('\n')
+        total_height = len(lines) * font.get_height()
+        y = rect.y + (rect.height - total_height) // 2
+        
+        for line in lines:
+            text_surface = font.render(line, True, color)
+            text_rect = text_surface.get_rect(centerx=rect.centerx, y=y)
+            screen.blit(text_surface, text_rect)
+            y += font.get_height()
 
 
 def main():
@@ -315,7 +369,7 @@ def main():
     gui = GUI()
     host, port = gui.pedir_direccion_servidor()
     
-    client = Cliente(host, port)
+    client = Client(host, port)
     if not client.conectar():
         print(f"No se pudo conectar al servidor en {host}:{port}")
         pygame.quit()
@@ -336,7 +390,7 @@ def main():
 
         # Bucle principal del juego
         while client.juego.juego_activo:
-            gui.draw_grid(client.juego)
+            gui.draw_grid(gui.screen, client.juego)
             
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

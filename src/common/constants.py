@@ -6,6 +6,7 @@ fuentes y rutas de archivos para mantener la consistencia en toda la aplicación
 """
 
 import os
+import pygame
 
 # Obtener el directorio raíz del proyecto
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

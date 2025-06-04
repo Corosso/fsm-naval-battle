@@ -3,6 +3,7 @@ import sys
 from typing import List, Tuple, Set
 from common.constants import *
 from common.logger import Logger
+from common.game_logic import EstadoJuego
 from .fsm_server import FSMServer
 from .gui import ServerGUI
 import pygame
