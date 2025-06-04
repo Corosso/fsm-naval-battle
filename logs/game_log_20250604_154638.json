@@ -1,0 +1,99 @@
+{
+    "timestamp_inicio": "20250604_154638",
+    "eventos": [
+        {
+            "timestamp": "15:46:38",
+            "tipo": "conexion_establecida",
+            "datos": {
+                "host": "localhost",
+                "port": 65432
+            }
+        },
+        {
+            "timestamp": "15:46:38",
+            "tipo": "barcos_recibidos",
+            "datos": {
+                "barcos": [
+                    "A1",
+                    "B1",
+                    "B2",
+                    "C1",
+                    "C2",
+                    "C3"
+                ]
+            }
+        },
+        {
+            "timestamp": "15:46:39",
+            "tipo": "disparo_enviado",
+            "datos": {
+                "coordenada": "A1",
+                "respuesta": "200 HUNDIDO"
+            }
+        },
+        {
+            "timestamp": "15:46:40",
+            "tipo": "error_disparo",
+            "datos": {
+                "error": "[WinError 10053] Se ha anulado una conexión establecida por el software en su equipo host",
+                "coordenada": "B1"
+            }
+        },
+        {
+            "timestamp": "15:46:40",
+            "tipo": "error_disparo",
+            "datos": {
+                "error": "[WinError 10053] Se ha anulado una conexión establecida por el software en su equipo host",
+                "coordenada": "B1"
+            }
+        },
+        {
+            "timestamp": "15:46:41",
+            "tipo": "error_disparo",
+            "datos": {
+                "error": "[WinError 10053] Se ha anulado una conexión establecida por el software en su equipo host",
+                "coordenada": "B2"
+            }
+        },
+        {
+            "timestamp": "15:46:41",
+            "tipo": "error_disparo",
+            "datos": {
+                "error": "[WinError 10053] Se ha anulado una conexión establecida por el software en su equipo host",
+                "coordenada": "B2"
+            }
+        },
+        {
+            "timestamp": "15:46:42",
+            "tipo": "error_disparo",
+            "datos": {
+                "error": "[WinError 10053] Se ha anulado una conexión establecida por el software en su equipo host",
+                "coordenada": "B2"
+            }
+        },
+        {
+            "timestamp": "15:46:42",
+            "tipo": "error_disparo",
+            "datos": {
+                "error": "[WinError 10053] Se ha anulado una conexión establecida por el software en su equipo host",
+                "coordenada": "B1"
+            }
+        },
+        {
+            "timestamp": "15:46:42",
+            "tipo": "error_disparo",
+            "datos": {
+                "error": "[WinError 10053] Se ha anulado una conexión establecida por el software en su equipo host",
+                "coordenada": "B1"
+            }
+        },
+        {
+            "timestamp": "15:46:43",
+            "tipo": "error_cerrar_conexion",
+            "datos": {
+                "error": "[WinError 10053] Se ha anulado una conexión establecida por el software en su equipo host"
+            }
+        }
+    ],
+    "estado_final": null
+}

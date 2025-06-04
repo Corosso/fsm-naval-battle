@@ -1,0 +1,52 @@
+{
+    "timestamp_inicio": "20250604_154434",
+    "eventos": [
+        {
+            "timestamp": "15:44:36",
+            "tipo": "inicio_servidor",
+            "datos": {
+                "host": "localhost",
+                "port": 65432
+            }
+        },
+        {
+            "timestamp": "15:44:43",
+            "tipo": "nueva_conexion",
+            "datos": {
+                "addr": "127.0.0.1:63686"
+            }
+        },
+        {
+            "timestamp": "15:44:44",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "mensaje": "GET_SHIPS",
+                "addr": "127.0.0.1:63686"
+            }
+        },
+        {
+            "timestamp": "15:44:44",
+            "tipo": "barcos_enviados",
+            "datos": {
+                "addr": "127.0.0.1:63686",
+                "barcos": [
+                    "A1",
+                    "B1",
+                    "B2",
+                    "D1",
+                    "D2",
+                    "D3"
+                ]
+            }
+        },
+        {
+            "timestamp": "15:44:46",
+            "tipo": "servidor_cerrado",
+            "datos": {
+                "razon": "usuario",
+                "estado_final": "no_iniciado"
+            }
+        }
+    ],
+    "estado_final": null
+}

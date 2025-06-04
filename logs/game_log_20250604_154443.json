@@ -1,0 +1,28 @@
+{
+    "timestamp_inicio": "20250604_154443",
+    "eventos": [
+        {
+            "timestamp": "15:44:43",
+            "tipo": "conexion_establecida",
+            "datos": {
+                "host": "localhost",
+                "port": 65432
+            }
+        },
+        {
+            "timestamp": "15:44:44",
+            "tipo": "barcos_recibidos",
+            "datos": {
+                "barcos": [
+                    "A1",
+                    "B1",
+                    "B2",
+                    "D1",
+                    "D2",
+                    "D3"
+                ]
+            }
+        }
+    ],
+    "estado_final": null
+}

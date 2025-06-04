@@ -1,0 +1,84 @@
+{
+    "timestamp_inicio": "20250604_184749",
+    "eventos": [
+        {
+            "timestamp": "18:47:49",
+            "tipo": "conexion_establecida",
+            "datos": {
+                "host": "localhost",
+                "port": 65432
+            }
+        },
+        {
+            "timestamp": "18:47:50",
+            "tipo": "barcos_recibidos",
+            "datos": {
+                "barcos": [
+                    "A1",
+                    "B1",
+                    "B2",
+                    "C1",
+                    "C2",
+                    "C3"
+                ]
+            }
+        },
+        {
+            "timestamp": "18:47:51",
+            "tipo": "disparo_enviado",
+            "datos": {
+                "coordenada": "A1",
+                "respuesta": "200 HUNDIDO"
+            }
+        },
+        {
+            "timestamp": "18:47:51",
+            "tipo": "disparo_enviado",
+            "datos": {
+                "coordenada": "B1",
+                "respuesta": "202 IMPACTO"
+            }
+        },
+        {
+            "timestamp": "18:47:52",
+            "tipo": "disparo_enviado",
+            "datos": {
+                "coordenada": "B2",
+                "respuesta": "200 HUNDIDO"
+            }
+        },
+        {
+            "timestamp": "18:47:53",
+            "tipo": "disparo_enviado",
+            "datos": {
+                "coordenada": "C2",
+                "respuesta": "202 IMPACTO"
+            }
+        },
+        {
+            "timestamp": "18:47:58",
+            "tipo": "disparo_enviado",
+            "datos": {
+                "coordenada": "B3",
+                "respuesta": "404 AGUA"
+            }
+        },
+        {
+            "timestamp": "18:47:59",
+            "tipo": "disparo_enviado",
+            "datos": {
+                "coordenada": "C3",
+                "respuesta": "202 IMPACTO"
+            }
+        },
+        {
+            "timestamp": "18:48:00",
+            "tipo": "disparo_enviado",
+            "datos": {
+                "coordenada": "C1",
+                "respuesta": "500 GAME OVER"
+            }
+        }
+    ],
+    "estado_final": null
+}

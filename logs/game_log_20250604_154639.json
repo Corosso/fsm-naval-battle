@@ -1,0 +1,23 @@
+{
+    "timestamp_inicio": "20250604_154639",
+    "eventos": [
+        {
+            "timestamp": "15:46:39",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "A1"
+            }
+        },
+        {
+            "timestamp": "15:46:39",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "A1",
+                "resultado": "200-hundido",
+                "estado_juego": "q3"
+            }
+        }
+    ],
+    "estado_final": null
+}

@@ -1,0 +1,431 @@
+{
+    "timestamp_inicio": "20250604_155043",
+    "eventos": [
+        {
+            "timestamp": "15:50:43",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "A1"
+            }
+        },
+        {
+            "timestamp": "15:50:43",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "A1",
+                "resultado": "200-hundido",
+                "estado_juego": "q3"
+            }
+        },
+        {
+            "timestamp": "15:50:48",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "B1"
+            }
+        },
+        {
+            "timestamp": "15:50:48",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "B1",
+                "resultado": "202-impactado",
+                "estado_juego": "q2"
+            }
+        },
+        {
+            "timestamp": "15:50:49",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "B2"
+            }
+        },
+        {
+            "timestamp": "15:50:49",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "B2",
+                "resultado": "200-hundido",
+                "estado_juego": "q3"
+            }
+        },
+        {
+            "timestamp": "15:50:50",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "B3"
+            }
+        },
+        {
+            "timestamp": "15:50:50",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "B3",
+                "resultado": "404-fallido",
+                "estado_juego": "q3"
+            }
+        },
+        {
+            "timestamp": "15:50:50",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "C3"
+            }
+        },
+        {
+            "timestamp": "15:50:50",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "C3",
+                "resultado": "202-impactado",
+                "estado_juego": "q2"
+            }
+        },
+        {
+            "timestamp": "15:50:50",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "C2"
+            }
+        },
+        {
+            "timestamp": "15:50:50",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "C2",
+                "resultado": "202-impactado",
+                "estado_juego": "q2"
+            }
+        },
+        {
+            "timestamp": "15:50:51",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "C1"
+            }
+        },
+        {
+            "timestamp": "15:50:51",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "C1",
+                "resultado": "500-hundido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:52",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "D3"
+            }
+        },
+        {
+            "timestamp": "15:50:52",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "D3",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:53",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "C4"
+            }
+        },
+        {
+            "timestamp": "15:50:53",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "C4",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:53",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "D2"
+            }
+        },
+        {
+            "timestamp": "15:50:53",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "D2",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:53",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "D1"
+            }
+        },
+        {
+            "timestamp": "15:50:53",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "D1",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:54",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "B4"
+            }
+        },
+        {
+            "timestamp": "15:50:54",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "B4",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:54",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "A3"
+            }
+        },
+        {
+            "timestamp": "15:50:54",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "A3",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:55",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "A2"
+            }
+        },
+        {
+            "timestamp": "15:50:55",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "A2",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:55",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "A4"
+            }
+        },
+        {
+            "timestamp": "15:50:55",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "A4",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:55",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "A5"
+            }
+        },
+        {
+            "timestamp": "15:50:55",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "A5",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:56",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "B5"
+            }
+        },
+        {
+            "timestamp": "15:50:56",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "B5",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:56",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "C5"
+            }
+        },
+        {
+            "timestamp": "15:50:56",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "C5",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:56",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "D5"
+            }
+        },
+        {
+            "timestamp": "15:50:56",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "D5",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:56",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "D4"
+            }
+        },
+        {
+            "timestamp": "15:50:56",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "D4",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:57",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "E5"
+            }
+        },
+        {
+            "timestamp": "15:50:57",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "E5",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:57",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "E3"
+            }
+        },
+        {
+            "timestamp": "15:50:57",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "E3",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:58",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "E4"
+            }
+        },
+        {
+            "timestamp": "15:50:58",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "E4",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:58",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "E2"
+            }
+        },
+        {
+            "timestamp": "15:50:58",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "E2",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        },
+        {
+            "timestamp": "15:50:59",
+            "tipo": "mensaje_recibido",
+            "datos": {
+                "estado_actual": "ESPERANDO_DISPARO",
+                "mensaje": "E1"
+            }
+        },
+        {
+            "timestamp": "15:50:59",
+            "tipo": "disparo_procesado",
+            "datos": {
+                "coordenada": "E1",
+                "resultado": "404-fallido",
+                "estado_juego": "q4"
+            }
+        }
+    ],
+    "estado_final": null
+}
