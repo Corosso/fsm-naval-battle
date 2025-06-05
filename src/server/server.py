@@ -131,10 +131,12 @@ class Server:
         
         try:
             server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            print(f"Puerto definido en constantes: {PORT}")
             print(f"Intentando iniciar servidor en {HOST}:{PORT}")
             server_socket.bind((HOST, PORT))
             server_socket.listen()
             print(f"Servidor iniciado y escuchando en {HOST}:{PORT}")
+            print(f"Socket info: {server_socket.getsockname()}")
             
             self.logger.registrar_evento("inicio_servidor", {
                 "host": HOST,

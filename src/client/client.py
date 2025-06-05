@@ -29,11 +29,13 @@ class Client:
             bool: True si la conexión fue exitosa, False en caso contrario
         """
         try:
+            print(f"Puerto definido en constantes: {PORT}")
             print(f"Intentando conectar a {self.host}:{self.port}")
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.socket.connect((self.host, self.port))
             self.socket.settimeout(2)
             print("Conexión establecida exitosamente")
+            print(f"Socket info: {self.socket.getpeername()}")
             self.logger.registrar_evento("conexion_establecida", {
                 "host": self.host,
                 "port": self.port

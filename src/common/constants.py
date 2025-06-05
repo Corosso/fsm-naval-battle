@@ -13,7 +13,7 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 # --- CONSTANTES DE CONEXIÓN ---
 HOST = '0.0.0.0'  # Dirección IP del servidor por defecto (escucha en todas las interfaces)
-PORT = 65432       # Puerto por defecto para la conexión
+PORT = 65432      # Puerto por defecto para la conexión
 
 # --- CONSTANTES DEL JUEGO ---
 GRID_SIZE = 5      # Tamaño del tablero (5x5)
