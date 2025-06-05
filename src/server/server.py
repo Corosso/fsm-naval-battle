@@ -129,107 +129,118 @@ class Server:
         """
         barcos = self.seleccionar_barcos()
         
-        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server_socket.bind((HOST, PORT))
-        server_socket.listen()
-        
-        self.logger.registrar_evento("inicio_servidor", {
-            "host": HOST,
-            "port": PORT
-        })
+        try:
+            server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            print(f"Intentando iniciar servidor en {HOST}:{PORT}")
+            server_socket.bind((HOST, PORT))
+            server_socket.listen()
+            print(f"Servidor iniciado y escuchando en {HOST}:{PORT}")
+            
+            self.logger.registrar_evento("inicio_servidor", {
+                "host": HOST,
+                "port": PORT
+            })
 
-        ocupadas = set(c for barco in barcos for c in barco)
-        conectado = [False]
+            ocupadas = set(c for barco in barcos for c in barco)
+            conectado = [False]
 
-        server_socket.setblocking(False)
-        running = True
+            server_socket.setblocking(False)
+            running = True
 
-        while running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
+            while running:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        running = False
 
-            try:
-                if not conectado[0]:
-                    try:
-                        self.conn, self.addr = server_socket.accept()
-                        conectado[0] = (self.conn, self.addr)
-                        self.logger.registrar_evento("nueva_conexion", {
-                            "addr": f"{self.addr[0]}:{self.addr[1]}"
-                        })
-                    except BlockingIOError:
-                        pass
-                else:
-                    self.conn, self.addr = conectado[0]
-                    self.conn.setblocking(False)
-                    try:
-                        mensaje = self.conn.recv(1024).decode()
-                        if mensaje:
-                            self.logger.registrar_evento("mensaje_recibido", {
-                                "mensaje": mensaje,
+                try:
+                    if not conectado[0]:
+                        try:
+                            print("Esperando conexión...")
+                            self.conn, self.addr = server_socket.accept()
+                            conectado[0] = (self.conn, self.addr)
+                            print(f"Nueva conexión desde {self.addr[0]}:{self.addr[1]}")
+                            self.logger.registrar_evento("nueva_conexion", {
                                 "addr": f"{self.addr[0]}:{self.addr[1]}"
                             })
-                            
-                            if mensaje == "A0":
-                                self.conn.sendall("200 OK".encode())
-                            elif mensaje == "GET_SHIPS":
-                                barcos_flat = [c for barco in barcos for c in barco]
-                                self.conn.sendall(",".join(barcos_flat).encode())
-                                self.logger.registrar_evento("barcos_enviados", {
-                                    "addr": f"{self.addr[0]}:{self.addr[1]}",
-                                    "barcos": barcos_flat
+                        except BlockingIOError:
+                            pass
+                    else:
+                        self.conn, self.addr = conectado[0]
+                        self.conn.setblocking(False)
+                        try:
+                            mensaje = self.conn.recv(1024).decode()
+                            if mensaje:
+                                self.logger.registrar_evento("mensaje_recibido", {
+                                    "mensaje": mensaje,
+                                    "addr": f"{self.addr[0]}:{self.addr[1]}"
                                 })
-                            elif mensaje.startswith("DISPARO:"):
-                                if self.fsm is None:
-                                    self.fsm = FSMServer(barcos)
-                                coord = mensaje.split(":")[1]
-                                respuesta = self.fsm.process_message(coord)
-                                self.impactos_recibidos[coord] = respuesta
-                                self.ultimo_disparo = f"Disparo en {coord} → {respuesta}"
-                                self.conn.sendall(respuesta.encode())
-                                self.logger.registrar_evento("disparo_procesado", {
-                                    "addr": f"{self.addr[0]}:{self.addr[1]}",
-                                    "coordenada": coord,
-                                    "respuesta": respuesta
-                                })
-
-                                if self.fsm.juego.estado == EstadoJuego.DERROTA:
-                                    self.conn.sendall("FIN".encode())
-                                    self.logger.registrar_evento("juego_terminado", {
+                                
+                                if mensaje == "A0":
+                                    self.conn.sendall("200 OK".encode())
+                                elif mensaje == "GET_SHIPS":
+                                    barcos_flat = [c for barco in barcos for c in barco]
+                                    self.conn.sendall(",".join(barcos_flat).encode())
+                                    self.logger.registrar_evento("barcos_enviados", {
                                         "addr": f"{self.addr[0]}:{self.addr[1]}",
-                                        "razon": "derrota",
-                                        "estado": self.fsm.juego.estado.value
+                                        "barcos": barcos_flat
+                                    })
+                                elif mensaje.startswith("DISPARO:"):
+                                    if self.fsm is None:
+                                        self.fsm = FSMServer(barcos)
+                                    coord = mensaje.split(":")[1]
+                                    respuesta = self.fsm.process_message(coord)
+                                    self.impactos_recibidos[coord] = respuesta
+                                    self.ultimo_disparo = f"Disparo en {coord} → {respuesta}"
+                                    self.conn.sendall(respuesta.encode())
+                                    self.logger.registrar_evento("disparo_procesado", {
+                                        "addr": f"{self.addr[0]}:{self.addr[1]}",
+                                        "coordenada": coord,
+                                        "respuesta": respuesta
                                     })
 
-                    except BlockingIOError:
-                        pass
-                    except ConnectionResetError:
-                        self.logger.registrar_evento("error", {
-                            "tipo": "conexion",
-                            "addr": f"{self.addr[0]}:{self.addr[1]}" if self.addr else "desconocido",
-                            "mensaje": "Cliente desconectado"
-                        })
-                        conectado[0] = False
-                        self.fsm = None
-                        continue
+                                    if self.fsm.juego.estado == EstadoJuego.DERROTA:
+                                        self.conn.sendall("FIN".encode())
+                                        self.logger.registrar_evento("juego_terminado", {
+                                            "addr": f"{self.addr[0]}:{self.addr[1]}",
+                                            "razon": "derrota",
+                                            "estado": self.fsm.juego.estado.value
+                                        })
 
-            except BlockingIOError:
-                pass
+                        except BlockingIOError:
+                            pass
+                        except ConnectionResetError:
+                            self.logger.registrar_evento("error", {
+                                "tipo": "conexion",
+                                "addr": f"{self.addr[0]}:{self.addr[1]}" if self.addr else "desconocido",
+                                "mensaje": "Cliente desconectado"
+                            })
+                            conectado[0] = False
+                            self.fsm = None
+                            continue
 
-            self.gui.draw_grid_server(self.impactos_recibidos, ocupadas, 
-                                    conectado, self.ultimo_disparo)
-            self.gui.update_display()
+                except BlockingIOError:
+                    pass
 
-        # Registrar el cierre del servidor
-        self.logger.registrar_evento("servidor_cerrado", {
-            "razon": "usuario",
-            "estado_final": self.fsm.juego.estado.value if self.fsm else "no_iniciado"
-        })
+                self.gui.draw_grid_server(self.impactos_recibidos, ocupadas, 
+                                        conectado, self.ultimo_disparo)
+                self.gui.update_display()
 
-        pygame.quit()
-        if self.conn:
-            self.conn.close()
-        server_socket.close()
+            # Registrar el cierre del servidor
+            self.logger.registrar_evento("servidor_cerrado", {
+                "razon": "usuario",
+                "estado_final": self.fsm.juego.estado.value if self.fsm else "no_iniciado"
+            })
+
+            pygame.quit()
+            if self.conn:
+                self.conn.close()
+            server_socket.close()
+
+        except Exception as e:
+            print(f"Error al iniciar el servidor: {e}")
+            pygame.quit()
+            if self.conn:
+                self.conn.close()
 
 def main():
     """

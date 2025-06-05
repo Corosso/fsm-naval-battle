@@ -29,15 +29,18 @@ class Client:
             bool: True si la conexión fue exitosa, False en caso contrario
         """
         try:
+            print(f"Intentando conectar a {self.host}:{self.port}")
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.socket.connect((self.host, self.port))
             self.socket.settimeout(2)
+            print("Conexión establecida exitosamente")
             self.logger.registrar_evento("conexion_establecida", {
                 "host": self.host,
                 "port": self.port
             })
             return True
         except Exception as e:
+            print(f"Error al conectar: {e}")
             self.logger.registrar_evento("error_conexion", {
                 "error": str(e),
                 "host": self.host,
