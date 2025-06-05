@@ -371,7 +371,26 @@ def main():
     
     client = Client(host, port)
     if not client.conectar():
-        print(f"No se pudo conectar al servidor en {host}:{port}")
+        # Mostrar mensaje de error en la ventana
+        error_screen = pygame.display.set_mode((400, 150))
+        pygame.display.set_caption("Error de conexión")
+        
+        error_text = gui.font_input.render("No se pudo conectar al servidor", True, COLOR_WHITE)
+        error_text2 = gui.font_input.render(f"en {host}:{port}", True, COLOR_WHITE)
+        error_text3 = gui.font_input.render("Presione cualquier tecla para salir", True, COLOR_WHITE)
+        
+        error_screen.fill(COLOR_BACKGROUND_DARK)
+        error_screen.blit(error_text, (200 - error_text.get_width()//2, 30))
+        error_screen.blit(error_text2, (200 - error_text2.get_width()//2, 70))
+        error_screen.blit(error_text3, (200 - error_text3.get_width()//2, 110))
+        pygame.display.flip()
+        
+        waiting = True
+        while waiting:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT or event.type == pygame.KEYDOWN:
+                    waiting = False
+        
         pygame.quit()
         sys.exit()
 

@@ -12,7 +12,7 @@ import pygame
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # --- CONSTANTES DE CONEXIÓN ---
-HOST = 'localhost'  # Dirección IP del servidor por defecto
+HOST = '0.0.0.0'  # Dirección IP del servidor por defecto (escucha en todas las interfaces)
 PORT = 65432       # Puerto por defecto para la conexión
 
 # --- CONSTANTES DEL JUEGO ---
