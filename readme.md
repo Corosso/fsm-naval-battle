@@ -35,9 +35,9 @@ git clone https://github.com/tu-usuario/batalla-naval-fsm.git
 cd batalla-naval-fsm
 ```
 
-2. Instala las dependencias:
+2. Instalar pygame:
 ```bash
-pip install -r requirements.txt
+pip install pygame
 ```
 
 ## 🎯 Uso
