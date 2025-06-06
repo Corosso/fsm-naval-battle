@@ -1,4 +1,0 @@
-Posiciones de barcos del servidor: A2,C4,C5,D2,D3,D4
-Disparo en A1: 404-fallido
-Disparo en A2: 200-hundido
-Disparo en A3: 404-fallido
