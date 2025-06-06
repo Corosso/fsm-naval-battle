@@ -53,25 +53,25 @@ class FSMServer:
         """
         self.ultimo_disparo = coord
         resultado = self.juego.procesar_disparo(coord)
-        self.ultimo_resultado = resultado.value
+        self.ultimo_resultado = str(resultado.value)
 
         # Registrar el resultado del disparo
         self.logger.registrar_evento("disparo_procesado", {
             "coordenada": coord,
-            "resultado": resultado.value,
-            "estado_juego": self.juego.estado.value
+            "resultado": str(resultado.value),
+            "estado_juego": str(self.juego.estado.value)
         })
 
         # Determinar el código de respuesta según el resultado
         if resultado == ResultadoDisparo.VICTORIA:
             self.juego_terminado = True
-            return "500 GAME OVER"
+            return f"{resultado.value} GAME OVER"
         elif resultado == ResultadoDisparo.HUNDIDO:
-            return "200 HUNDIDO"
+            return f"{resultado.value} HUNDIDO"
         elif resultado == ResultadoDisparo.IMPACTADO:
-            return "202 IMPACTO"
+            return f"{resultado.value} IMPACTO"
         else:
-            return "404 AGUA"
+            return f"{resultado.value} AGUA"
 
     def obtener_estado_actual(self) -> Dict:
         """

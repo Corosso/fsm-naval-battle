@@ -2,6 +2,7 @@ import socket
 from typing import Tuple, Optional
 from common.logger import Logger
 from common.game_logic import JuegoCliente
+from common.constants import PORT
 
 class Client:
     """

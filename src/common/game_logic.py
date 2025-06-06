@@ -8,12 +8,12 @@ class EstadoJuego(Enum):
     DERROTA = "q4"
 
 class ResultadoDisparo(Enum):
-    OK = "200 OK"
-    IMPACTADO = "202-impactado"
-    HUNDIDO = "200-hundido"
-    VICTORIA = "500-hundido"
-    FALLO = "404-fallido"
-    NO_ENCONTRADO = "404 Not Found"
+    OK = "200"
+    IMPACTADO = "202"
+    HUNDIDO = "200"
+    VICTORIA = "500"
+    FALLO = "404"
+    NO_ENCONTRADO = "404"
 
 class Barco:
     def __init__(self, coordenadas: List[str]):
