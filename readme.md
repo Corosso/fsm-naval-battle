@@ -87,10 +87,10 @@ batalla-naval-fsm/
 
 ## 📊 Estados del Juego
 
-- `FLOTA_INTACTA`: Estado inicial del juego
-- `BARCO_IMPACTADO`: Un barco ha sido impactado
-- `BARCO_HUNDIDO`: Un barco ha sido hundido
-- `DERROTA`: Todos los barcos han sido hundidos
+- `q1`: Estado inicial del juego
+- `q2`: Un barco ha sido impactado
+- `q3`: Un barco ha sido hundido
+- `q4`: Todos los barcos han sido hundidos
 
 ## 🔍 Resultados de Disparo
 
